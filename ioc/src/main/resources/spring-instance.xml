@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" >
+
+    <!--通过构造方法实例化Bean-->
+    <!--Bean的别名-->
+    <bean id="bean1" class="com.rc.ioc.official.xml.instance.Bean1" name="bean1_1,bean1_2"/>
+    <alias name="bean1" alias="bean1_3"/>
+
+    <!--通过静态方法实例化Bean-->
+    <bean class="com.rc.ioc.official.xml.instance.Bean2Factory" factory-method="getBean2" id="bean2"/>
+
+    <!--通过实例方法实例化Bean-->
+    <bean id="bean3Factory" class="com.rc.ioc.official.xml.instance.Bean3Factory"/>
+    <bean id="bean3" class="com.rc.ioc.official.xml.instance.Bean3"
+          factory-bean="bean3Factory" factory-method="getBean3" />
+</beans>

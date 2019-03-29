@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" >
+
+
+    <bean id="anotherBean" class="com.rc.ioc.official.xml.AnotherBean"/>
+
+    <!--构造方式注入-->
+    <!--<bean id="beanConstruct" class="com.rc.ioc.official.xml.inject.BeanConstruct">
+        <constructor-arg index="0" name="anotherBean"
+                         type="com.rc.ioc.official.xml.AnotherBean" ref="anotherBean"/>
+        <constructor-arg index="1" name="name" type="java.lang.String" value="liux" />
+    </bean>-->
+
+    <!--构造方式注入-简便写法-->
+    <bean id="beanConstruct" class="com.rc.ioc.official.xml.inject.BeanConstruct"
+        c:anotherBean-ref="anotherBean" c:name="liux"/>
+</beans>

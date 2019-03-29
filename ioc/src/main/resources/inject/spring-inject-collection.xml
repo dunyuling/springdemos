@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd" >
+
+
+    <bean id="anotherBean" class="com.rc.ioc.official.xml.AnotherBean"/>
+
+    <!--集合类Bean的注入-->
+    <bean id="beanCollection" class="com.rc.ioc.official.xml.inject.BeanCollection">
+        <!--list-->
+        <property name="stringList">
+            <list>
+                <value>aa</value>
+                <value>bb</value>
+            </list>
+        </property>
+        <property name="anotherBeanList">
+            <list>
+                <ref bean="anotherBean"/>
+                <ref bean="anotherBean"/>
+            </list>
+        </property>
+
+        <!--set-->
+        <property name="stringSet">
+            <set>
+                <value>cc</value>
+                <value>dd</value>
+            </set>
+        </property>
+        <property name="anotherBeanSet">
+            <set>
+                <ref bean="anotherBean"/>
+                <ref bean="anotherBean"/>
+            </set>
+        </property>
+
+        <!--map-->
+        <property name="stringMap">
+            <map>
+                <entry key="name" value="liux"/>
+                <entry key="address" value="china"/>
+            </map>
+        </property>
+        <property name="anotherBeanMap">
+            <map>
+                <entry key-ref="anotherBean" value-ref="anotherBean"/>
+                <entry key-ref="anotherBean" value-ref="anotherBean"/>
+            </map>
+        </property>
+
+        <!--properties-->
+        <property name="properties">
+            <props>
+                <prop key="favor">basketball</prop>
+                <prop key="work">programmer</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

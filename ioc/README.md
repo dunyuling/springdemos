@@ -1,0 +1,63 @@
+##from(https://www.imooc.com/learn/1108)  
+##Java Web 发展史
+* 第一阶段: JavaBean + Servlet + JSP逐步发展  
+* 第二阶段: 面对EJB重量级框架带来的种种麻烦
+* 第三阶段: SpringMVC/Struts + Spring + Hibernate/Mybatis  
+* 第四阶段: 享受SpringBoot "约定大于配置"的种种乐趣  
+* 第五阶段: 以dubbo为代表的SOA微服务架构体系  
+* 第六阶段: SpringCloud微服务架构技术生态圈
+
+##课程内容：IoC
++ 介绍IoC并编写一个简单的IoC容器 (对应package: com.rc.ioc.my ) 
+    + 什么是IoC
+        + 控制什么？
+            * 控制对象的创建及销毁(生命周期)
+        + 反转什么？
+            * 将对象的控制权交给IoC容器
+        + 解耦
+    + 示例 
+        + 约定
+            * 所有Bean的生命周期交由IoC容器管理
+            * 所有被依赖的Bean通过构造方法执行注入
+            * 被依赖的Bean优先创建
+        + 回顾
+            * 所有的依赖关系被集中统一的管理起来了
+            * 每个类只需要关注自己的业务逻辑
+            * 修改依赖关系变得容易
+                               
++ 介绍如何通过xml的方式完成SpringIoC对Bean的管理(对应package: com.rc.ioc.official.xml)      
+    + 通过Spring实例化Bean(对应package: com.rc.ioc.official.xml.instance)(详见spring-instance.xml)
+        * 构造方法
+        * 静态方法    
+        * 实例方法    
+        * Bean别名
+    + 注入Bean(对应package: com.rc.ioc.official.xml.inject)
+        * 构造方法(详见 spring-inject-construct.xml)
+        * set方法(详见 spring-inject-set.xml)
+        + 集合类Bean的注入(详见 spring-inject-collection.xml)
+            * List
+            * Set
+            * Map
+            * Properties
+        * null值注入(详见 spring-inject-null.xml)
+        * 注入时创建内部Bean(详见 spring-inject-inner-bean.xml)
+    + Bean作用域
+        * Singleton(只能保证同一个上下文环境的单例)        
+        * prototype        
+            + Bean1依赖于Bean2,分为以下四种情况(s代表singleton,p代表prototype)
+                * Bean1(s),Bean2(s)-->Bean1(s),Bean2(s)  
+                + Bean1(s),Bean2(p)-->Bean1(s),Bean2(s) 重点
+                    * Bean1(s),Bean2(p)-->Bean1(s),Bean2(p) 的方法见MethodPrototypeBean.java和spring-method-prototype.xml  
+                * Bean1(p),Bean2(s)-->Bean1(p),Bean2(s)  
+                * Bean1(p),Bean2(p)-->Bean1(p),Bean2(p)    
+                
+        + Web环境(具体demo见项目ioc-web)
+            * request 每个request请求都会创建一个单独的实例
+            * session 每个session都会创建一个单独的实例
+            * application 每个servletContext都会创建一个单独的实例 
+            * websocket 每个websocket连接都会创建一个单独的实例
+        + 自定义
+            * MyScope
+            * SimpleThreadScope(spring提供)        
++ 介绍SpringIoC相关注解的使用
+
