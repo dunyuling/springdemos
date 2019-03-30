@@ -90,5 +90,22 @@
         + Bean的属性继承    
             * 场景一 (详见resources/inherit/spring-inherit-1.xml)                                                       
             * 场景二 (详见resources/inherit/spring-inherit-2.xml)                                                     
-+ 介绍SpringIoC相关注解的使用
++ 介绍SpringIoC相关注解的使用(对应package：com.rc.ioc.official.annotation.inject)(测试类：com.rc.ioc.official.annotation.inject.TestBean)
+    * 注解的基本使用
+    + 通过注解注入Bean
+        + 通过方法注入
+            * 构造方法
+            * set方法
+        * 通过属性注入
+        + 集合类型
+            * 直接注入集合实例
+            + 将多个泛型的实例注入到集合
+                * 将多个泛型实例注入到List
+                * 控制泛型实例在List中的顺序
+                * 将多个泛型实例注入到Map
+        * String,Integer等类型直接赋值
+        * SpringIoC容器内置接口实例注入                
+    * 通过注解设定Bean的作用域
+    * 通过注解开启Bean的懒加载
+    * 通过注解编写Bean初始化与销毁
 
