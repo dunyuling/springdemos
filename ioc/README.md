@@ -58,6 +58,37 @@
             * websocket 每个websocket连接都会创建一个单独的实例
         + 自定义
             * MyScope
-            * SimpleThreadScope(spring提供)        
+            * SimpleThreadScope(spring提供) 
+    + Bean的懒加载 (详见resources/lazy/**.xml) 
+        * 只对singleton的作用域有效(只有一个实例才需要控制)
+        + 为一个Bean设定懒加载  
+            * <bean lazy-init="true"/>  
+        + 为所有Bean设定懒加载  
+            * <beans default-lazy-init="true">...</beans>  
+        + 适用场景
+            * 如果某个Bean在程序整个运行周期都可能不会被使用,
+                那么可考虑设定该Bean为懒加载
+        + 优点
+            * 尽可能的节省资源
+        + 缺点
+            * 可能会导致某个操作响应时间增加 
+    + Bean的生命周期(详见resources/lifecycle/**.xml) 
+        + Bean的初始化 
+            + 如果需要在Bean实例化之后执行一些逻辑，有两种办法
+                + 单个Bean
+                    * 使用<bean init-Method="××" />配置
+                    * 让Bean实现InitializingBean接口
+                +多个Bean
+                    * 使用<beans default-init-method="××">...</beans>配置 
+        + Bean的销毁                            
+            + 如果需要在Bean销毁之前执行一些逻辑，有两种办法
+                + 单个Bean
+                    * 使用<bean destroy-Method="××" />配置
+                    * 让Bean实现DisposableBean接口
+                +多个Bean
+                    * 使用<beans default-destroy-method="××">...</beans>配置 
+        + Bean的属性继承    
+            * 场景一 (详见resources/inherit/spring-inherit-1.xml)                                                       
+            * 场景二 (详见resources/inherit/spring-inherit-2.xml)                                                     
 + 介绍SpringIoC相关注解的使用
 

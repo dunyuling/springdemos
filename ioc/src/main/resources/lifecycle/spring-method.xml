@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--type 1: default-init-method="onInit" default-destroy-method="onDestroy"-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd"
+        default-init-method="onInit" default-destroy-method="onDestroy">
+
+    <bean id="lifecycleMethodBean" class="com.rc.ioc.official.xml.lifecycle.Bean"/>
+</beans>
+
+<!--type 2: init-method="onInit" destroy-method="onDestroy"-->
+<!--
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="lifecycleMethodBean" class="com.rc.ioc.official.xml.lifecycle.Bean"
+        init-method="onInit" destroy-method="onDestroy"/>
+</beans>
+-->
