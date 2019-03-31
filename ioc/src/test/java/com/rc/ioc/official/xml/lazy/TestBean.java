@@ -32,7 +32,7 @@ public class TestBean {
 
     /*
      * @Author liux
-     * @Description 设置Bean的懒加载
+     * @Description 测试Bean的懒加载
      * @Date 19-3-30 上午11:22
      * @param
      * @return void
