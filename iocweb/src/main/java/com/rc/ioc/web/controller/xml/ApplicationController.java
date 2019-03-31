@@ -1,4 +1,4 @@
-package com.rc.ioc.web.controller;
+package com.rc.ioc.web.controller.xml;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
