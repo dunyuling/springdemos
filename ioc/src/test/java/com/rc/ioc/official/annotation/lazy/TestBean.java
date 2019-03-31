@@ -1,6 +1,5 @@
 package com.rc.ioc.official.annotation.lazy;
 
-import com.rc.ioc.official.xml.lazy.Bean;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

@@ -3,9 +3,9 @@ package com.rc.ioc.official.annotation.scope;
 import org.springframework.beans.factory.config.CustomScopeConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.SimpleThreadScope;
-import org.springframework.stereotype.Component;
 
 /**
  * @ClassName MyConfiguration
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @Date 19-3-31 下午12:03
  * @Version 1.0
  */
-@Component
+@Configuration
 @ComponentScan("com.rc.ioc.official.annotation.scope")
 public class MyConfiguration {
 

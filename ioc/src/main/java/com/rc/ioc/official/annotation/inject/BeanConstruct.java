@@ -1,10 +1,9 @@
 package com.rc.ioc.official.annotation.inject;
 
 import com.rc.ioc.official.annotation.AnotherBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-/**
+/*
  * @ClassName BeanConst
  * @Description 通过构造方法注入
  * @Author liux

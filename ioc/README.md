@@ -90,9 +90,9 @@
         + Bean的属性继承    
             * 场景一 (详见resources/inherit/spring-inherit-1.xml)                                                       
             * 场景二 (详见resources/inherit/spring-inherit-2.xml)                                                     
-+ 介绍SpringIoC相关注解的使用(对应package：com.rc.ioc.official.annotation.inject)(测试类：com.rc.ioc.official.annotation.inject.TestBean)
-    * 注解的基本使用
-    + 通过注解注入Bean
++ 介绍SpringIoC相关注解的使用(与上文xml部分对照学习)
+    * 注解的基本使用(对应package：com.rc.ioc.official.annotation.base)(测试类：com.rc.ioc.official.annotation.base.TestBean)
+    + 通过注解注入Bean(对应package：com.rc.ioc.official.annotation.inject)(测试类：com.rc.ioc.official.annotation.inject.TestBean)
         + 通过方法注入
             * 构造方法
             * set方法
@@ -105,13 +105,17 @@
                 * 将多个泛型实例注入到Map
         * String,Integer等类型直接赋值
         * SpringIoC容器内置接口实例注入                
-    + 通过注解设定Bean的作用域(详细描述见上文对应xml部分)(具体代码结合com.rc.ioc.official.annotation.scope.TestBean查看)
+    + 通过注解设定Bean的作用域(对应package：com.rc.ioc.official.annotation.scope)(测试类：com.rc.ioc.official.annotation.scope.TestBean)
         * Singleton(只能保证同一个上下文环境的单例)        
         * prototype        
         * Web环境(具体demo见项目ioc-web)
         + 自定义
             * MyScope
             * SimpleThreadScope(spring提供) 
-    * 通过注解开启Bean的懒加载
-    * 通过注解编写Bean初始化与销毁
-
+    + 通过注解开启Bean的懒加载(对应package：com.rc.ioc.official.annotation.lazy)(测试类：com.rc.ioc.official.annotation.lazy.TestBean)
+        * @Component @Lazy 某个Bean单一实例的懒加载
+        * @Configuration @Lazy 配置文件下所有Bean的懒加载
+    + 通过注解编写Bean初始化与销毁(对应package：com.rc.ioc.official.annotation.lifecycle)(测试类：com.rc.ioc.official.annotation.lifecycle.TestBean)
+        * @Bean(initMethod = "onInit",destroyMethod = "onDestroy")
+        * @PostConstruct,@PreDestroy
+        * 实现implements InitializingBean, DisposableBean两个接口

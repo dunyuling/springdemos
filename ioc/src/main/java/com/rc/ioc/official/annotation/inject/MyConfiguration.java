@@ -2,8 +2,8 @@ package com.rc.ioc.official.annotation.inject;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +17,7 @@ import java.util.Map;
  * @Date 19-3-30 下午7:09
  * @Version 1.0
  */
-@Component
+@Configuration
 @ComponentScan(value = {"com.rc.ioc.official.annotation.inject"},
         basePackageClasses = {com.rc.ioc.official.annotation.AnotherBean.class})
 public class MyConfiguration {
