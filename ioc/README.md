@@ -105,7 +105,13 @@
                 * 将多个泛型实例注入到Map
         * String,Integer等类型直接赋值
         * SpringIoC容器内置接口实例注入                
-    * 通过注解设定Bean的作用域
+    + 通过注解设定Bean的作用域(详细描述见上文对应xml部分)(具体代码结合com.rc.ioc.official.annotation.scope.TestBean查看)
+        * Singleton(只能保证同一个上下文环境的单例)        
+        * prototype        
+        * Web环境(具体demo见项目ioc-web)
+        + 自定义
+            * MyScope
+            * SimpleThreadScope(spring提供) 
     * 通过注解开启Bean的懒加载
     * 通过注解编写Bean初始化与销毁
 
