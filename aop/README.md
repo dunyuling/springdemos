@@ -43,7 +43,7 @@
         * AOP的好处以及适用场景
         + 两大核心要点
             * 切面
-            * 植入                                       
+            * 织入                                       
 
 ##AOP使用
     + AspectJ主要注解
@@ -121,7 +121,46 @@
         * @Around,环绕通知    
 
 ##AOP原理
-
+    + 概述
+        + 织入的时机
+            * 编译器(AspectJ)
+            * 类加载时(AspectJ 5+)
+            * 运行时(Spring aop)
+        + 运行时织入如何实现
+            + 代理对象
+                + 静态代理
+                    +　缺点
+                        * 代理方法越多，重复代码越多    
+                + 动态代理
+                    + 基于接口
+                        * JDK代理
+                    + 基于继承
+                        * Cglib代理
+                    
+        + 代理模式(对应package：com.rc.aop.pattern.proxy)
+            * 本应用属于静态代理          
+    + 设计
+        * 代理模式
+        + 责任链模式(对应package：com.rc.aop.pattern.chain)
+            * 分为基础版和加强版
+            * 基础版自己管理链式关系
+            * 加强版由Chain类统一管理
+    + 实现
+        + JDK实现(对应package：com.rc.aop.pattern.jkdproxy)
+            + 要点
+                * 类:java.lang.reflect.Proxy
+                * 接口:InvocationHandler 
+                * 只能基于接口进行代理
+        + Cglib实现(对应package：com.rc.aop.pattern.Cglib)
+        + JDK代理与Cglib代理对比
+            * jdk只能针对有接口的类的接口方法进行动态代理
+            * Cglib基于继承来实现代理，无法对static，final类进行代理
+            * Cglib基于继承来实现代理，无法对private，static方法进行代理
+        + Spring如何创建bean  
+            * 如果目标对象实现了接口，则默认采用JDK动态代理  
+            * 如果目标对象没有实现接口，则默认采用Cglib动态代理  
+            * 如果目标对象实现了接口，且强制使用Cglib代理，则采用Cglib动态代理  
+                @EnableAspectJAutoProxy(proxyTargetClass = true)
 ##AOP开源运用
 
 ##实战
