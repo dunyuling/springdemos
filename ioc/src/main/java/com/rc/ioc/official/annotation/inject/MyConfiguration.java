@@ -31,12 +31,12 @@ public class MyConfiguration {
     }
 
     @Bean
-    private String string3() {
+    public String string3() {
         return "cc";
     }
 
     @Bean
-    private String string4() {
+    public String string4() {
         return "dd";
     }
 

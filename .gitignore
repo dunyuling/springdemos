@@ -2,3 +2,7 @@
 ioc/target
 iocweb/target
 aop/target
+aoptransaction/target
+aopsecurity/target
+aopcache/target
+mvc/target

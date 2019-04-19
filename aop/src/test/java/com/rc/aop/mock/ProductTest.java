@@ -28,12 +28,14 @@ public class ProductTest {
 
     @Test(expected = Exception.class)
     public void testInsert() {
+        CurrentUserHolder.set("ll");
         productService.insert(null);
     }
 
     @Test
     public void testDelete() {
-        CurrentUserHolder.set("ll");
+//        CurrentUserHolder.set("ll");
+        CurrentUserHolder.set("admin");
         productService.delete(null);
     }
 }

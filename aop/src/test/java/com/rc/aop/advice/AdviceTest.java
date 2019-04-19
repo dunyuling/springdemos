@@ -35,7 +35,7 @@ public class AdviceTest {
         adviceService.afterReturning();
     }
 
-    @Test
+    @Test(expected = RuntimeException.class)
     public void afterThrowing() {
         adviceService.afterThrowing();
     }

@@ -161,8 +161,12 @@
             * 如果目标对象没有实现接口，则默认采用Cglib动态代理  
             * 如果目标对象实现了接口，且强制使用Cglib代理，则采用Cglib动态代理  
                 @EnableAspectJAutoProxy(proxyTargetClass = true)
-##AOP开源运用
 
+##AOP开源运用
+    * @Transactional(事务)--详见项目 aoptransaction 项目
+    * @PreAuthorize(安全)--详见项目 aopsecurity 项目
+    * @Cacheable(缓存)--详见项目 aopcache 项目
+    
 ##实战
 
 ##总结

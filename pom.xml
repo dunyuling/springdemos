@@ -13,6 +13,9 @@
         <module>iocweb</module>
         <module>mvc</module>
         <module>aop</module>
+        <module>aoptransaction</module>
+        <module>aopsecurity</module>
+        <module>aopcache</module>
     </modules>
 
     <properties>
