@@ -11,6 +11,10 @@
 
     <artifactId>aop</artifactId>
 
+    <properties>
+        <hibernate.version>5.4.2.Final</hibernate.version>
+    </properties>
+
     <dependencies>
         <!-- spring-aop -->
         <dependency>
@@ -59,12 +63,25 @@
             <version>3.2.10</version>
         </dependency>
 
-
+        <!--aop关联jar包-->
         <dependency>
             <groupId>aopalliance</groupId>
             <artifactId>aopalliance</artifactId>
             <version>1.0</version>
         </dependency>
 
+        <!--hibernate-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+
+        <!--jpa-->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>2.1.6.RELEASE</version>
+        </dependency>
     </dependencies>
 </project>
