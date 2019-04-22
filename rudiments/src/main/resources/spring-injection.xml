@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--set方式注入,需要包含无参构造方法-->
+    <!--<bean id="injectionService" class="com.rc.rudiments.xml.ioc.injection.service.InjectionServiceImpl">
+        <property name="injectionDAO" ref="injectionDao"/>
+    </bean>
+
+    <bean id="injectionDao" class="com.rc.rudiments.xml.ioc.injection.dao.InjectionDaoImpl"/>-->
+
+
+    <!--构造方式注入,需要包含有参构造方法-->
+    <bean id="injectionService" class="com.rc.rudiments.xml.ioc.injection.service.InjectionServiceImpl">
+        <constructor-arg name="injectionDAO" ref="injectionDao"/>
+    </bean>
+
+    <bean id="injectionDao" class="com.rc.rudiments.xml.ioc.injection.dao.InjectionDaoImpl"/>
+
+
+</beans>

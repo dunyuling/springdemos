@@ -16,6 +16,7 @@
         <module>aoptransaction</module>
         <module>aopsecurity</module>
         <module>aopcache</module>
+        <module>rudiments</module>
     </modules>
 
     <properties>
