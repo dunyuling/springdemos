@@ -87,4 +87,67 @@
                 * ByteArrayResource:针对于字节数组封装的资源
         + ResourceLoader 
             * all application context implements the ResourceLoader interface,and therefore all
-                application context may be used to obtain Resource instances                
+                application context may be used to obtain Resource instances
+
+##专题三 AOP
+    + 什么是AOP
+        * AOP:Aspect Oriented Programmingd.面向切面编程,通过预编译方式和运行期动态代理实现程序功能的
+            统一维护的一种技术
+        * 主要功能:日志记录,性能统计,安全控制,事务控制,异常处理   
+        + 实现方式
+            + 预编译
+                * AspectJ
+            + 运行期动态代理(JDK动态代理,Cglib动态代理)
+                * SpringAOP 
+                * JbossAOP 
+        + 相关概念
+            * 切面(Aspect)
+                一个关注点的模块化,这个关注点可能会横切多个对象        
+            * 连接点(Joinpoint)
+                程序执行过程中某个特定的点        
+            * 通知(Advice)
+                在切面的某个特定的连接点上执行的动作        
+            * 切入点(Pointcut)
+                匹配连接点的断言,在AOP中通知和一个切入点表达式关联        
+            * 引入(Introduction)
+                在不修改类代码的前提下,为类添加新的方法和属性        
+            * 目标对象(Target Object)
+                被一个或者多个切面通知的对象        
+            * AOP代理(AOP Proxy) 
+                AOP框架创建的对象,用来实现切面契约(aspect contract)
+                    (包括通知方法执行等功能)       
+            * 织入(Weaving)
+                把切面连接到其他程序类型或者对象上,并创建一个被通知的对象,
+                    分为:编译时织入,类加载时织入,执行时织入        
+    + spring AOP
+        * 提供了声明式的企业服务,特别是EJB的替代服务的声明
+        * 允许用户定制自己的方面,以完成OOP与AOP的互补使用
+        + 实现
+            * 纯java实现,无需特殊的编译过程,无需控制类加载器层次
+            * 只支持方法执行连接点(通知Spring Bean的方法执行)
+            * 不是为了提供最完整的AOP实现(尽管很强大);而是侧重于提供一种AOP实现
+                和Spring IoC容器之间的整合,用于帮助解决企业应用的常见问题
+            * Spring AOP 不会与AspectJ竞争,从而提供全面的AOP实现方案  
+        + 有接口和无接口Spring AOP实现的区别
+            * Spring AOP默认使用标准的JavaSErvice动态代理作为AOP代理,这使得
+                任何接口(接口集)都可以被代理
+            * Spring AOP中也可以使用CGLIB代理(如果一个业务对象并没有实现一个接口)      
+    + schema-based AOP
+        * Spring所有的切面和通知器都必须放在一个<aop:config>内,(可以配置多个<aop:config>语速),
+            每一个<aop:config>可以包含pointcut,advisor和aspect元素
+        * <aop:config>风格大量使用了spring的自动代理机制  
+        + Introductions
+            * 简介允许一个切面声明一个实现指定接口的通知对象,并且提供了一个接口实现类来代表这些对象
+            * 由<aop:aspect>中的<aop:declare-parents>元素声明该元素用于声明所匹配的类型拥有一个
+                新的Parent(因此得名)   
+        * Aspect instantiation models
+            scheme-defined aspects只支持singleton model 
+        + advisors
+            * 一个小的自包含的方面,只有一个advice
+            * 切面自身通过一个bean表示,并且必须实现某个advice接口,同时,advisor也可以很好得利用
+                AspectJ的切入点表达式                      
+            * 由<aop:advisor>元素来使用,大多数情况下它会和transaction advice配合使用
+            * 通过order属性来定义advisor的顺序    
+    * spring AOP API
+    * AspectJ
+                                

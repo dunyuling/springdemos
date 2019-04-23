@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="moocAspect" class="com.rc.rudiments.xml.aop.schema.advice.MoocAspect"/>
+
+    <bean id="aspectBiz" class="com.rc.rudiments.xml.aop.schema.advice.biz.AspectBiz"/>
+
+    <aop:config>
+        <aop:aspect ref="moocAspect">
+            <!--<aop:pointcut id="bizMethods" expression="execution(* com.rc.rudiments.xml.aop.schema.advice.biz.AspectBiz.*(..))"/>
+            <aop:before method="before" pointcut-ref="bizMethods"/>
+            <aop:after-returning method="afterReturning" pointcut-ref="bizMethods" returning="returnVal"/>
+            <aop:after-throwing method="afterThrowing" pointcut-ref="bizMethods"/>
+            <aop:after method="after" pointcut-ref="bizMethods"/>
+            <aop:around method="around" pointcut-ref="bizMethods"/>-->
+
+            <!--Advice parameters-->
+            <!--<aop:around method="aroundInit" pointcut="execution(* com.rc.rudiments.xml.aop.schema.advice.biz.AspectBiz.init(..))
+                        and args(bizName,times)"/>-->
+        </aop:aspect>
+
+        <aop:aspect ref="moocAspect">
+            <!--Introduction-->
+            <aop:declare-parents
+                    types-matching="com.rc.rudiments.xml.aop.schema.advice.biz.*"
+                    implement-interface="com.rc.rudiments.xml.aop.schema.advice.Fit"
+                    default-impl="com.rc.rudiments.xml.aop.schema.advice.FitImpl" />
+
+            <!-- Advice 不再生效 -->
+            <aop:pointcut id="bizMethods" expression="execution(* com.rc.rudiments.xml.aop.schema.advice..*(..))"/>
+            <aop:before method="before" pointcut-ref="bizMethods"/>
+        </aop:aspect>
+    </aop:config>
+</beans>

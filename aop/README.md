@@ -52,7 +52,7 @@
         * @Advice
     + Pointcut expression
         + com.rc.aop.designators
-            + 匹配方法(对应package：com.rc.aop.com.rc.aop.designators.execution)
+            + 匹配方法(对应package：com.rc.aop.designators.execution)
                 + execution()
                     * 表达式解释
                         标注问号代表可以省略
@@ -63,40 +63,40 @@
                                 name-pattern(param-pattern)
                                 throws pattern?
                         )
-                    * @Pointcut("execution(public * com.rc.aop.com.rc.aop.designators.execution.ExecutionService.m1(..))")
-            + 匹配注解(对应package：com.rc.aop.com.rc.aop.designators.annotation)
+                    * @Pointcut("execution(public * com.rc.aop.designators.execution.ExecutionService.m1(..))")
+            + 匹配注解(对应package：com.rc.aop.designators.annotation)
                 + @target()
                     * 匹配标注有 @NeedSecured 的类底下的方法，要求的annotation的RetentionPolicy级别为RUNTIME
-                    * @Pointcut("@target(com.rc.aop.com.rc.aop.designators.annotation.NeedSecured)")                
+                    * @Pointcut("@target(com.rc.aop.designators.annotation.NeedSecured)")                
                 + @args()
                     * 匹配传入的参数标注有 @NeedSecured注解的类 的方法
-                    * @Pointcut("@args(com.rc.aop.com.rc.aop.designators.annotation.NeedSecured)")               
+                    * @Pointcut("@args(com.rc.aop.designators.annotation.NeedSecured)")               
                 + @within()
                     * TODO 非 spring 环境 匹配标注有 @NeedSecured 的类底下的方法，要求的annotation的RetentionPolicy级别为CLASS
                     * TODO spring 环境 匹配标注有 @NeedSecured 的类底下的方法，要求的annotation的RetentionPolicy级别为CLASS或者RUNTIME
-                    * @Pointcut("@within(com.rc.aop.com.rc.aop.designators.annotation.NeedSecured)")               
+                    * @Pointcut("@within(com.rc.aop.designators.annotation.NeedSecured)")               
                 + @annotation()
                     * 匹配方法标有 @AnnotationDemo 的注解的方法
                     * @Pointcut("@annotation(AnnotationDemo)")                
-            + 匹配包/类型(对应package：com.rc.aop.com.rc.aop.designators.pkg)
+            + 匹配包/类型(对应package：com.rc.aop.designators.pkg)
                 + within()  
                     * 匹配PkgService里的所有方法
-                        @Pointcut("within(com.rc.aop.com.rc.aop.designators.com.rc.aop.designators.pkg.PkgService)")
-                    * 匹配com.rc.aop.com.rc.aop.designators.pkg包及其子包下的所有方法
-                        @Pointcut("within(com.rc.aop.com.rc.aop.designators..*)")            
-            + 匹配对象(对应package：com.rc.aop.com.rc.aop.designators.obj)
+                        @Pointcut("within(com.rc.aop.designators.com.rc.aop.designators.pkg.PkgService)")
+                    * 匹配com.rc.aop.designators.pkg包及其子包下的所有方法
+                        @Pointcut("within(com.rc.aop.designators..*)")            
+            + 匹配对象(对应package：com.rc.aop.designators.obj)
                 + this()
                     * 匹配AOP对象的目标对象为指定类型的方法，即 ObjService 的aop代理对象的方法
-                    * @Pointcut("this(com.rc.aop.com.rc.aop.designators.obj.ObjService)")              
+                    * @Pointcut("this(com.rc.aop.designators.obj.ObjService)")              
                 + target()                
                     * 匹配实现 IObjService 接口的目标对象(而不是aop代理后的对象)的方法，这里即 OjbService2 的方法
-                    * @Pointcut("target(com.rc.aop.com.rc.aop.designators.obj.IObjService)")
+                    * @Pointcut("target(com.rc.aop.designators.obj.IObjService)")
                 + bean()                
                     * 匹配所有以Service结尾的bean里头的方法
                     * @Pointcut("bean(objService)")   
                 + this()与target()的区别
                     * introduction(本课程不涉及)                    
-            + 匹配参数(对应package：com.rc.aop.com.rc.aop.designators.args) 
+            + 匹配参数(对应package：com.rc.aop.designators.args) 
                 * 匹配任何以find开头且只有Long参数的方法
                     @Pointcut("execution(* *..find*(Long))")
                 * 匹配只有一个Long参数的方法
@@ -113,7 +113,7 @@
             * &&
             * ||
             * !
-    + 5中Advice(对应package：com.rc.aop.com.rc.aop.advice)
+    + 5中Advice(对应package：com.rc.aop.advice)
         * @Before,前置通知    
         * @After(finally),后置通知    
         * @AfterReturning,返回通知，成功执行之后    
