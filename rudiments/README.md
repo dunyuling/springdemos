@@ -132,7 +132,7 @@
             * Spring AOP默认使用标准的JavaSErvice动态代理作为AOP代理,这使得
                 任何接口(接口集)都可以被代理
             * Spring AOP中也可以使用CGLIB代理(如果一个业务对象并没有实现一个接口)      
-    + schema-based AOP
+    + schema-based AOP(对应package:com.rc.rudiments.xml.aop.schema)
         * Spring所有的切面和通知器都必须放在一个<aop:config>内,(可以配置多个<aop:config>语速),
             每一个<aop:config>可以包含pointcut,advisor和aspect元素
         * <aop:config>风格大量使用了spring的自动代理机制  
@@ -148,6 +148,69 @@
                 AspectJ的切入点表达式                      
             * 由<aop:advisor>元素来使用,大多数情况下它会和transaction advice配合使用
             * 通过order属性来定义advisor的顺序    
-    * spring AOP API
+    * spring AOP API(对应package:com.rc.rudiments.xml.aop.api)
+        * 这是Spring1.2历史用法,现在(V5.1)仍然支持
+        * SpringAOP基础
+        * 现在用法基于历史用法,只是进行了简化
+        + pointcut
+            * 实现之一:NameMatchMethodPointcut,根据方法名字进行匹配
+            * 成员变量:mappedNames
+        + Before advice
+            * 一个简单的通知类型
+            * 进入方法之前被调用，不需要MethodInvocation对象
+            * 前置通知可以在连接点之前自定义行为,但不能改变返回值  
+        + Throws advice
+            * 如果连接点抛出异常,throws advice在连接点返回后调用
+            * 如果throws-advice方法抛出异常,那么它将覆盖原有异常
+            + org.springframework.aop.ThrowsAdvice 不包含任何方法,仅仅是一个声明
+                实现类需要试下以下方法
+                * void afterThrowing([Method, args, target], ThrowableSubclass)
+        + after returning advice
+            * 必须实现 org.springframework.aop.AfterReturningAdvice 接口
+            * 可以访问返回值(但不能进行修改),被调用的方法,方法的参数和目标
+            * 如果抛出异常,则会抛出拦截器链,代替返回值     
+        + interceptor around advice
+            * spring的切入点模型使得切入点可以独立与advice重用,以针对不同的advice可以
+                使用相同的切入点   org.springframework.aop.framework
+        + Introduction advice
+            * spring 把引入通知作为一种特殊的拦截通知
+            * 需要 IntroductionAdvisor 和 IntroductionInterceptor
+            * 仅适用于类,不能和切入点一起使用   
+            + demo
+                * from:Spring test suit
+                * 如果调用lock()方法,希望所有的setter方法抛出 LockedException(如使
+                    物体不可变,AOP典型例子)
+                * 需要一个完成繁重任务的 IntroductionInterceptor, 这种情况下,可以使用
+                    org.springframework.aop.support.DelegatingIntroductionInterceptor
+                * introduction advisor 比较简单,持有独立的 LockMixin 实例
+        + Advisor API in Spring
+            * Advisor是仅包含一个切入点表达式关联的单个通知的方面
+            * 除了 introductions, advisor 可以用于任何通知
+            * org.springframework.aop.support.DefaultIntroductionAdvisor 是最常用的 advisor 类,
+                可以与 MethodInterceptor,BeforeAdvice等一起使用
+            * 可以混合在同一个AOP代理的 advisor 和 advice   
+        + ProxyFactoryBean
+            * 创建Spring AOP代理的基本方法是使用org.springframework.aop.framework.ProxyFactoryBean 
+            * 完全控制切入点和通知以及他们的顺序
+            * 使用 ProxyFactoryBean 或这其他IoC相关类来创建AOP代理的最重要的好处是通知和切入点也可以由IoC管理
+            * 被代理类没有实现任何接口,由CGLIB代理,否则代理
+            * 通过设置proxyTargetClass为true,可强制使用CGLIB
+            * 如果目标类实现了一个(或者多个)接口,那么创建代理的类型将依赖ProxyFactoryBean的配置
+            * 如果ProxyFactoryBean的proxyInterfaces属性被设置为一个或者多个全限定名接口名,基于JDK的代理被创建
+            * 如果ProxyFactoryBean的proxyInterfaces属性没有被设置,但是目标类实现了一个(或者更多)接口,那么ProxyFactoryBean
+                将自动检测到这个目标类已经实现了至少一个接口,创建一个JDK的代理 
+            + proxying classes
+                * 没有实现接口,将会使用CGLIB代理,而不是JDK代理
+                * 即使有接口,也可强制使用CGLIB代理
+                * CGLIB代理的工作原理为在运行时生成目标类的子类,Spring配置这个生成的子类委托方法调用到原来的目标
+                * 子类是用来实现Decorator模式,织入通知
+                + CGLIB 代理对用户透明,需要注意:
+                    * final 方法不能被通知,因为他们不能被覆盖
+                    * CGLIB 已被加入到了 Spring核心jar,可实现开箱即用 
+        + ProxyFactory
+            * 使用Spring AOP 而不必依赖于Spring IoC
+            * 最佳实践是用IoC容器创建AOP代理
+            * 虽然可以硬编码方式实现,但是Spring推荐使用配置或注解方式实现                                                              
+                                              
     * AspectJ
                                 

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="moocBeforeAdvice" class="com.rc.rudiments.xml.aop.api.MoocBeforeAdvice"/>
+    <bean id="moocAfterReturningAdvice" class="com.rc.rudiments.xml.aop.api.MoocAfterReturningAdvice"/>
+    <bean id="moocThrowsAdvice" class="com.rc.rudiments.xml.aop.api.MoocThrowsAdvice"/>
+    <bean id="moocMethodInterceptor" class="com.rc.rudiments.xml.aop.api.MoocMethodInterceptor"/>
+
+
+    <!--
+    <bean id="bizLogicImplTarget" class="com.rc.rudiments.xml.aop.api.BizLogicImpl"/>
+
+    &lt;!&ndash; 配置 advisor 的 pointcut &ndash;&gt;
+    <bean id="pointcutBean" class="org.springframework.aop.support.NameMatchMethodPointcut">
+        <property name="mappedNames">
+            <list>
+                <value>sa*</value>
+            </list>
+        </property>
+    </bean>
+    &lt;!&ndash; 配置 advisor  &ndash;&gt;
+    <bean id="defaultPointcutAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="advice" ref="moocBeforeAdvice"/>
+        <property name="pointcut" ref="pointcutBean"/>
+    </bean>
+
+
+    <bean id="bizLogicImpl"  class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target">
+            <bean class="com.rc.rudiments.xml.aop.api.BizLogicImpl"/>
+            &lt;!&ndash;<ref bean="bizLogicImplTarget"/>&ndash;&gt;
+        </property>
+        &lt;!&ndash; 配置接口,ProxyFactoryBean 创建一个JDK的代理 &ndash;&gt;
+        <property name="interfaces" value="com.rc.rudiments.xml.aop.api.BizLogic"/>
+        <property name="interceptorNames">
+            <list>
+                &lt;!&ndash;<value>defaultPointcutAdvisor</value>&ndash;&gt;
+
+                <value>moocBeforeAdvice</value>
+                <value>moocAfterReturningAdvice</value>
+                <value>moocMethodInterceptor</value>
+                <value>moocThrowsAdvice</value>
+
+                &lt;!&ndash; 只有实现了 MethodInterceptor 的切面,才能使用通配符&ndash;&gt;
+                &lt;!&ndash;<value>mooc*</value>&ndash;&gt;
+            </list>
+        </property>
+    </bean>
+    -->
+
+    <bean id="baseProxyBean" class="org.springframework.aop.framework.ProxyFactoryBean"
+                lazy-init="true" abstract="true"/>
+    <bean id="bizLogicImpl" parent="baseProxyBean">
+        <property name="target">
+            <bean class="com.rc.rudiments.xml.aop.api.BizLogicImpl"/>
+        </property>
+        <property name="proxyInterfaces" value="com.rc.rudiments.xml.aop.api.BizLogic"/>
+        <property name="interceptorNames">
+            <list>
+                <value>moocBeforeAdvice</value>
+                <value>moocAfterReturningAdvice</value>
+                <value>moocMethodInterceptor</value>
+                <value>moocThrowsAdvice</value>
+            </list>
+        </property>
+    </bean>
+</beans>
