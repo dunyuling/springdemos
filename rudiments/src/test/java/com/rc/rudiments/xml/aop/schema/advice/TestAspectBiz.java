@@ -52,7 +52,7 @@ public class TestAspectBiz extends UnitTestBase {
      * @return void
      **/
     @Test
-    public void testFit() {
+    public void testIntroduction() {
         Fit fit = super.getBean("aspectBiz");
         fit.filter();
     }

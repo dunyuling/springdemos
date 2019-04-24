@@ -212,5 +212,21 @@
             * 最佳实践是用IoC容器创建AOP代理
             * 虽然可以硬编码方式实现,但是Spring推荐使用配置或注解方式实现                                                              
                                               
-    * AspectJ
+    + AspectJ
+        * @AspectJ的风格类似纯java注解的普通java类
+        * Spring 可以使用AspectJ来做切入点解析
+        * AOP的运行时仍旧是纯的Spring AOP,对AspectJ的编译器或者织入无依赖性  
+        + aspect
+            * @Aspect切面使用@Aspect注解配置,拥有@Aspect的任何bean将被Spring自动识别并应用
+            * 用@Aspect 注解的类可以有方法和字段,他们也可能包括pointcut,advice,introduction 声明
+            * @Aspect 注解不能通过类路径自动检测发现,所以需要配合使用@Component注解或者在xml中配置bean
+            * 一个类中的@Aspect 注解标识它为一个切面,并且将自己从自动代理中排除
+        + pointcut(具体介绍见aop module)
+            + 定义良好的切入点    
+                * AspectJ 是编译期的AOP
+                * 检查代码并匹配连接点与切入点的代价是昂贵的
+                * 一个好的切入点应该包括以下几点:
+                    * 选择特定类型的连接点,如:execution,get,set,call,handler
+                    * 确定连接点范围, 如:within,withincode
+                    * 匹配上下文信息, 如:this,target,@annotation     
                                 
