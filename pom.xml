@@ -17,6 +17,7 @@
         <module>aopsecurity</module>
         <module>aopcache</module>
         <module>rudiments</module>
+        <module>mvcinterceptor</module>
     </modules>
 
     <properties>
