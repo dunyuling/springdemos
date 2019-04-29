@@ -1,7 +1,7 @@
 package com.rc.transaction.declaration.tpfb.service;
 
 import com.rc.transaction.declaration.tpfb.dao.AccountDao;
-import com.rc.transaction.declaration.tpfb.model.Account;
+import com.rc.transaction.declaration.Account;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import java.util.Arrays;

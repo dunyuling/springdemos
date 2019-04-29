@@ -1,11 +1,10 @@
 package com.rc.transaction.declaration.aspectj.dao;
 
-import com.rc.transaction.declaration.aspectj.model.Account;
+import com.rc.transaction.declaration.Account;
+import com.rc.transaction.declaration.AccountMapper;
 import org.springframework.jdbc.core.PreparedStatementCallback;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,32 +33,14 @@ public class AccountDaoImpl extends JdbcDaoSupport implements AccountDao {
     public Account findById(int id) {
         String sql = " select * from account where  id = ?";
         assert this.getJdbcTemplate() != null;
-        return this.getJdbcTemplate().queryForObject(sql, new Object[]{id}, (rs, rowNum) -> {
-            Account account = new Account();
-            account.setId(rs.getInt(1));
-            account.setName(rs.getString(2));
-            account.setMoney(rs.getDouble(3));
-            return account;
-        });
+        return this.getJdbcTemplate().queryForObject(sql, new Object[]{id},new AccountMapper());
     }
 
     @Override
     public List<Account> findAll() {
         String sql = " select * from account";
         assert this.getJdbcTemplate() != null;
-        List<Account> accounts = new ArrayList<>();
-        this.getJdbcTemplate().query(sql, (RowMapper<Account>) (rs, rowNum) -> {
-            while (!rs.isAfterLast()) {
-                Account account = new Account();
-                account.setId(rs.getInt("id"));
-                account.setName(rs.getString("name"));
-                account.setMoney(rs.getDouble("money"));
-                accounts.add(account);
-                rs.next();
-            }
-            return null;
-        });
-        return accounts;
+        return this.getJdbcTemplate().query(sql, new AccountMapper());
     }
 
     @Override

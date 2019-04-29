@@ -1,13 +1,12 @@
 package com.rc.transaction.declaration.aspectj.service;
 
-import com.rc.transaction.declaration.aspectj.RollBackException;
+import com.rc.transaction.declaration.RollBackException;
 import com.rc.transaction.declaration.aspectj.dao.AccountDao;
-import com.rc.transaction.declaration.aspectj.model.Account;
+import com.rc.transaction.declaration.Account;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 /**
  * @ClassName AccountServiceImpl

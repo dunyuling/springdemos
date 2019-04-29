@@ -1,4 +1,4 @@
-package com.rc.transaction.declaration.aspectj;
+package com.rc.transaction.declaration;
 
 /**
  * @ClassName RollBackException

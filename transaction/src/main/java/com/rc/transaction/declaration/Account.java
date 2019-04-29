@@ -1,4 +1,4 @@
-package com.rc.transaction.declaration.aspectj.model;
+package com.rc.transaction.declaration;
 
 /**
  * @ClassName Account

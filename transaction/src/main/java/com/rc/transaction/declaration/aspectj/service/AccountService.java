@@ -1,7 +1,7 @@
 package com.rc.transaction.declaration.aspectj.service;
 
-import com.rc.transaction.declaration.aspectj.RollBackException;
-import com.rc.transaction.declaration.aspectj.model.Account;
+import com.rc.transaction.declaration.RollBackException;
+import com.rc.transaction.declaration.Account;
 
 import java.util.List;
 

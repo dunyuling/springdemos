@@ -1,6 +1,7 @@
 package com.rc.transaction.declaration.aspectj.dao;
 
-import com.rc.transaction.declaration.aspectj.model.Account;
+
+import com.rc.transaction.declaration.Account;
 
 import java.util.List;
 

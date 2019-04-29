@@ -1,12 +1,7 @@
 package com.rc.transaction.declaration.anno.service;
 
 import com.rc.transaction.declaration.anno.dao.AccountDao;
-import com.rc.transaction.declaration.anno.model.Account;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * @ClassName AccountServiceImpl

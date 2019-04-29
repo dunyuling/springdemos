@@ -1,6 +1,6 @@
 package com.rc.transaction.declaration.tpfb.dao;
 
-import com.rc.transaction.declaration.tpfb.model.Account;
+import com.rc.transaction.declaration.Account;
 
 import java.util.List;
 

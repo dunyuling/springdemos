@@ -51,7 +51,7 @@
             <tx:method name="transferInTransactionByDeclaration"/>
             <tx:method name="getAll" propagation="REQUIRED" isolation="REPEATABLE_READ" />
             <tx:method name="modifyAccountById" propagation="NEVER" isolation="READ_UNCOMMITTED"
-                       rollback-for="com.rc.transaction.declaration.aspectj.RollBackException"/>
+                       rollback-for="com.rc.transaction.declaration.RollBackException"/>
         </tx:attributes>
     </tx:advice>
 
