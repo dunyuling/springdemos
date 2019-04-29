@@ -8,7 +8,7 @@ import javax.security.auth.login.AppConfigurationEntry;
 
 /**
  * @ClassName Main
- * @Description TODO
+ * @Description Main 类
  * @Author liux
  * @Date 19-4-18 上午11:16
  * @Version 1.0

@@ -2,7 +2,7 @@ package com.rc.ioc.official.annotation.lifecycle;
 
 /**
  * @ClassName Bean1
- * @Description TODO
+ * @Description 生命周期中的方法
  * @Author liux
  * @Date 19-3-31 下午2:51
  * @Version 1.0

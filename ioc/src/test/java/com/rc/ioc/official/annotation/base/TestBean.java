@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * @ClassName TestBean
- * @Description TODO
+ * @Description 测试Bean的获取
  * @Author liux
  * @Date 19-3-30 下午6:00
  * @Version 1.0

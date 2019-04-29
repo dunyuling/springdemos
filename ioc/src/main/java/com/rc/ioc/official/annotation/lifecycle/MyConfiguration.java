@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @ClassName MyConfiguration
- * @Description TODO
+ * @Description 生命周期的配置文件
  * @Author liux
  * @Date 19-3-31 下午2:51
  * @Version 1.0

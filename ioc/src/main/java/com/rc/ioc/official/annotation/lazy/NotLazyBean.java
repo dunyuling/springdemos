@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @ClassName NotLazyBean
- * @Description TODO
+ * @Description 测试非懒加载
  * @Author liux
  * @Date 19-3-31 下午2:26
  * @Version 1.0

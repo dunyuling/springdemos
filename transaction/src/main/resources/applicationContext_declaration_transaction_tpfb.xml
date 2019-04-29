@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 引入外部属性文件 -->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!--配置连接池-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driverClassName}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!-- 配置持久层 accountDao -->
+    <!--<property name="dataSource" ref="dataSource"/>-->
+    <bean id="accountDao" class="com.rc.transaction.declaration.tpfb.dao.AccountDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+
+    <!-- 配置jdbcTemplate -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 配置业务层 accountService -->
+    <bean id="accountService" class="com.rc.transaction.declaration.tpfb.service.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao"/>
+        <property name="dataSourceTransactionManager" ref="dataSourceTransactionManager"/>
+    </bean>
+
+    <!-- 配置事务管理器 -->
+    <bean id="dataSourceTransactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 配置业务层代理 -->
+    <bean id="accountServiceProxy"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <!-- 配置目标对象 -->
+        <property name="target" ref="accountService"/>
+        <!-- 注入事务管理器 -->
+        <property name="transactionManager" ref="dataSourceTransactionManager" />
+        <!-- 注入事务属性 -->
+        <property name="transactionAttributes">
+            <props>
+                <!--
+                    prop的格式:
+                        * PROPAGATION   :事务的传播行为
+                        * ISOLATION     : 事务的隔离级别
+                        * readOnly      : 只读
+                        * -Exception    : 发生哪些异常回滚事务
+                        * +Exception    : 发生哪些异常不回滚事务
+                -->
+                <!--只为演示-->
+                <!--<prop key="transfer*">PROPAGATION_REQUIRED,ISOLATION_READ_UNCOMMITTED,+java.lang.AssertionError</prop>-->
+
+                <prop key="transfer*">PROPAGATION_REQUIRED,ISOLATION_READ_UNCOMMITTED</prop>
+
+                <!-- 通过更新测试 不可重复读 -->
+                <prop key="getById">PROPAGATION_REQUIRED,ISOLATION_REPEATABLE_READ</prop>
+
+                <!-- 通过添加测试幻读,奇怪的是ISOLATION_REPEATABLE_READ级别可以防止幻读,不知道测试方法哪里有问题 -->
+                <prop key="getAll">PROPAGATION_REQUIRED,ISOLATION_REPEATABLE_READ</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

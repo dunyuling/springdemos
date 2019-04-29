@@ -18,6 +18,7 @@
         <module>aopcache</module>
         <module>rudiments</module>
         <module>mvcinterceptor</module>
+        <module>transaction</module>
     </modules>
 
     <properties>

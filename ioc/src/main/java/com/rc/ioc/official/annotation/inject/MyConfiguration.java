@@ -12,7 +12,7 @@ import java.util.Map;
 
 /**
  * @ClassName MyConfiguration
- * @Description TODO
+ * @Description 测试注入
  * @Author liux
  * @Date 19-3-30 下午7:09
  * @Version 1.0

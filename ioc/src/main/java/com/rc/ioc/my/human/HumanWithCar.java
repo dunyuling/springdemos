@@ -4,7 +4,7 @@ import com.rc.ioc.my.car.Car;
 
 /**
  * @ClassName HumanWithCar
- * @Description TODO
+ * @Description HumanWithCar--只能为抽象类,不同人具体goHome()等方法不同
  * @Author liux
  * @Date 19-3-28 下午11:42
  * @Version 1.0

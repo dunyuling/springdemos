@@ -5,7 +5,7 @@ import javax.annotation.PreDestroy;
 
 /**
  * @ClassName Bean3
- * @Description TODO
+ * @Description 生命周期中的方法
  * @Author liux
  * @Date 19-3-31 下午3:15
  * @Version 1.0

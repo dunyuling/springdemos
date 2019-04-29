@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * @ClassName CourseService
- * @Description TODO
+ * @Description CourseService interface
  * @Author liux
  * @Date 19-4-26 下午5:18
  * @Version 1.0

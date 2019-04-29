@@ -16,8 +16,9 @@
     <!-- 扫描注解 -->
     <context:component-scan base-package="com.rc.aoptransaction"/>
 
-    <!-- 配置数据源 -->
+    <!-- 引入外部属性文件 -->
     <context:property-placeholder location="classpath:jdbc.properties"/>
+    <!-- 配置数据源 -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <!--<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">-->
         <property name="driverClassName" value="${jdbc.driverClassName}"/>
@@ -27,9 +28,15 @@
     </bean>
 
     <!-- Jpa 事务配置 -->
-    <bean class="org.springframework.orm.jpa.JpaTransactionManager"
-          id="transactionManager">
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+    <!--定义实体管理器-->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="myJPA"/>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
     </bean>
 
     <!--jpaVendorAdapter:指定实现JPA的适配器 -->
@@ -40,17 +47,9 @@
         <property name="databasePlatform" value="org.hibernate.dialect.MySQL57Dialect" />
     </bean>
 
-    <!--定义实体管理器-->
-    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="persistenceUnitName" value="myJPA"/>
-        <property name="dataSource" ref="dataSource"/>
-        <property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
-    </bean>
-
     <!-- Spring Data Jpa配置 -->
     <jpa:repositories base-package="com.rc.aoptransaction.dao"
                       entity-manager-factory-ref="entityManagerFactory"/>
-
 
     <!-- 启用 annotation事务 -->
     <tx:annotation-driven/>

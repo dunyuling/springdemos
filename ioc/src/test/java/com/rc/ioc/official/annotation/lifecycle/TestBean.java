@@ -5,7 +5,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 /**
  * @ClassName TestBean
- * @Description TODO
+ * @Description 生命周期的测试
  * @Author liux
  * @Date 19-3-31 下午3:01
  * @Version 1.0
