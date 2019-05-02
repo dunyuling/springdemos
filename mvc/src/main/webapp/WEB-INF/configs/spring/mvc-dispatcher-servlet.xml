@@ -31,7 +31,6 @@
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
 
-
     <!-- 配置ViewResolver-->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
@@ -47,4 +46,31 @@
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="resolveLazily" value="true"/>
     </bean>
+
+    <!-- 自定义转换器 -->
+    <mvc:annotation-driven conversion-service="formattingConversionService"/>
+    <bean id="formattingConversionService"
+          class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+
+        <property name="formatters">
+            <set>
+                <!-- formatter 和 converter 同时存在时,优先选择 formatter -->
+                <!--<bean class="com.rc.mvc.common.MyDateFormatter"/>-->
+            </set>
+        </property>
+
+        <property name="converters">
+            <set>
+                <bean class="org.springframework.core.convert.support.StringToBooleanConverter"/>
+                <bean class="com.rc.mvc.common.MyDateConverter"/>
+            </set>
+        </property>
+
+    </bean>
+
+    <!-- 注册拦截器 -->
+    <!--TODO 通过拦截器的方式改变响应的content-type 以解决中文乱码 没有成功-->
+    <!--<mvc:interceptors>
+        <bean class="com.rc.mvc.interceptor.CharacterEncodingInterceptor"/>
+    </mvc:interceptors>-->
 </beans>
