@@ -19,13 +19,16 @@
         <module>rudiments</module>
         <module>mvcinterceptor</module>
         <module>transaction</module>
+        <module>data</module>
     </modules>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <spring.version>5.1.5.RELEASE</spring.version>
+        <spring.version>5.1.6.RELEASE</spring.version>
+        <spring-data-jpa.version>2.1.6.RELEASE</spring-data-jpa.version>
         <junit.version>4.12</junit.version>
+        <hibernate.version>5.4.2.Final</hibernate.version>
     </properties>
 
 </project>

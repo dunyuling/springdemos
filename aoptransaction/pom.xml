@@ -11,10 +11,6 @@
 
     <artifactId>aoptransaction</artifactId>
 
-    <properties>
-        <hibernate.version>5.4.2.Final</hibernate.version>
-    </properties>
-
     <dependencies>
 
         <dependency>

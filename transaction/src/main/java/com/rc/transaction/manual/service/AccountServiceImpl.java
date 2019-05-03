@@ -59,17 +59,15 @@ public class AccountServiceImpl implements AccountService {
             return null;
         });*/
 
-        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-            @Override
-            protected void doInTransactionWithoutResult(TransactionStatus status) {
-                accountDao.outMoney(out, money);
-                try {
-                    Thread.sleep(10000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                accountDao.inMoney(in, money);
+        transactionTemplate.execute(status -> {
+            accountDao.outMoney(out, money);
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+            accountDao.inMoney(in, money);
+            return null;
         });
     }
 
