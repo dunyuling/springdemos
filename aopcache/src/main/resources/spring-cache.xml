@@ -11,6 +11,7 @@
        http://www.springframework.org/schema/cache/spring-cache.xsd">
 
     <context:component-scan base-package="com.rc.aopcache.service"/>
+    <context:component-scan base-package="com.rc.aopcache.component"/>
 
     <cache:annotation-driven/>
 

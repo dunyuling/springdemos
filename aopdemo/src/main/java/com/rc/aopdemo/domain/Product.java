@@ -1,6 +1,6 @@
-package com.rc.aop.demo.model;
+package com.rc.aopdemo.domain;
 
-import com.rc.aop.demo.datalog.Datalog;
+import com.rc.aopdemo.datalog.Datalog;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,13 +8,6 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Date;
 
-/**
- * @ClassName Product
- * @Description 产品类
- * @Author liux
- * @Date 19-4-20 下午9:58
- * @Version 1.0
- */
 @Entity
 public class Product {
 
@@ -22,7 +15,7 @@ public class Product {
     @GeneratedValue
     private Long id;
 
-    @Datalog(name="产品名称")
+    @Datalog(name = "产品名称")
     private String name;
 
     private String category;
@@ -38,6 +31,13 @@ public class Product {
     private Date onlineTime;
 
     private Date updateTime;
+
+    public Product() {
+    }
+
+    public Product(String name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;

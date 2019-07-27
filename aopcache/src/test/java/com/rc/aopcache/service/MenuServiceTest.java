@@ -28,4 +28,22 @@ public class MenuServiceTest {
         System.out.println("second time get from cache");
         System.out.println("call: " + menuService.getMenuList());
     }
+
+    @Test
+    public void testCacheNotWork() {
+        System.out.println("first time  get from db");
+        menuService.cacheNotWork();
+        System.out.println();
+        System.out.println("second time get from db");
+        menuService.cacheNotWork();
+    }
+
+    @Test
+    public void testCacheReWork() {
+        System.out.println("first time  get from db");
+        menuService.cacheReWork();
+        System.out.println();
+        System.out.println("second time get from cache");
+        menuService.cacheReWork();
+    }
 }
